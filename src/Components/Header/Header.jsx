@@ -6,31 +6,29 @@ import MenuBurger from "../MenuBurger/MenuBurger";
 
 import emailImg from "../../images/Header/email-icon.png";
 import lockImg from "../../images/Header/lock-icon.png";
+import { Link } from "react-router-dom";
 
 function Header(props) {
   return (
     <div className={s.header__wrapper}>
-
       <div className={s.account__header__wrapper}>
-
         <div className={s.account__header}>
           <div className={s.email__info}>
             <img src={emailImg} alt="email" />
             <span>{props.email}</span>
           </div>
 
-          <div className={s.auth__info}>
+          <Link to="/login" className={s.auth__info}>
             <img src={lockImg} alt="lock" />
             <span>Account</span>
-          </div>
+          </Link>
         </div>
-        
       </div>
 
-      <div className={s.logo__wrapper}>
-        <div className={s.logo}></div>
-        <span>Lucky</span>
-      </div>
+      <Link to="/" className={s.logo__wrapper}>
+          <div className={s.logo}></div>
+          <span>Lucky</span>
+      </Link>
 
       <div className={s.search__wrapper}>
         <div className={s.search__input__wrapper}>
@@ -44,9 +42,9 @@ function Header(props) {
           </select>
         </div>
 
-        <div className={s.submit__wrapper}>
+        <Link to="/search" className={s.submit__wrapper}>
           <input type="submit" value=""></input>
-        </div>
+        </Link>
       </div>
 
       <div className={s.menu__wrapper}>

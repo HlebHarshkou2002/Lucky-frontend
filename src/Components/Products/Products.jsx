@@ -9,6 +9,7 @@ import GraphicImg from "../../images/Products/graphic-course.png"
 import MathImg from "../../images/Products/math-course.png"
 
 
+
 function Products(props) {
   return (
     <div className={s.products__block}>
@@ -25,6 +26,7 @@ function Products(props) {
       </div>
 
       <div className={s.products__wrapper}>
+
         <Product title={"Laravel"} price={2.99} productImg={LaravelImg}/>
         <Product title={"English(A1, A2)"} price={5.99} productImg={EnglishImg}/>
         <Product title={"Business "} price={2.99} productImg={BusinessImg}/>

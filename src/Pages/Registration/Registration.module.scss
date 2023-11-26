@@ -21,6 +21,17 @@
     width: 450px;
     height: 500px;
     margin: 50px auto;
+    text-align: right;
+
+
+    .exit {
+      padding: 20px;
+
+      color: #111111;
+      text-decoration: none;
+      font-size: 25px;
+      font-weight: 700;
+    }
 
     .registration__title {
       margin-top: 50px;
@@ -65,6 +76,7 @@
     }
 
     .registation__title {
+      color: #111111;
       text-align: center;
     }
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import s from "./Registration.module.scss";
+import { Link } from "react-router-dom";
 
 function Registration() {
   return (
@@ -7,6 +8,9 @@ function Registration() {
       <div className={s.registration__block__bg}>
 
         <div className={s.registration__block}>
+          <Link to="/" className={s.exit}>
+            X
+          </Link>
           <div className={s.registration__title}>Registration</div>
 
           <div className={s.registration__fields}>
@@ -23,11 +27,12 @@ function Registration() {
             <div>
               <button className={s.registration__button}>Register</button>
             </div>
-          </div>
 
-          <div className={s.registation__title}>Login</div>
+            <Link to="/login" className={s.registation__title}>
+              Login
+            </Link>
+          </div>
         </div>
-        
       </div>
     </div>
   );
