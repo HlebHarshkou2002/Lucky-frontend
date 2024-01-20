@@ -3,11 +3,11 @@ import s from "./SearchProducts.module.scss";
 import Products from "../../Components/Products/Products";
 import SideBar from "../../Components/SideBar/SideBar";
 
-function SearchProducts() {
+function SearchProducts(props) {
     return(
         <div className={s.search__block}>
             <SideBar />
-            <Products title={"Courses"}/>
+            <Products title={"Courses"} searchValue={props.searchValue}/>
         </div>
     )
 }

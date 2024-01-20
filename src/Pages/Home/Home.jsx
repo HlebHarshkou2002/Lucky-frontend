@@ -2,11 +2,11 @@ import React from "react";
 import Intro from "../../Components/Intro/Intro";
 import Products from "../../Components/Products/Products";
 
-function Home () {
+function Home (props) {
     return (
         <>
             <Intro />
-            <Products title={"Most popular"}/> 
+            <Products title={"Most popular"} searchValue={props.searchValue}/> 
         </>
     )
 }

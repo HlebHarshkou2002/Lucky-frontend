@@ -1,14 +1,38 @@
 import React from "react";
 import s from "./Header.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Navigate } from "react-router-dom";
+
 import basketIcon from "../../images/Header/basket-icon.png";
 import logoImg from "../../images/Header/logo.png";
 import MenuBurger from "../MenuBurger/MenuBurger";
 
 import emailImg from "../../images/Header/email-icon.png";
 import lockImg from "../../images/Header/lock-icon.png";
-import { Link } from "react-router-dom";
+import { logout, selectIsAdmin, selectIsAuth } from "../../redux/slices/auth";
 
 function Header(props) {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
+  const isAdmin = useSelector(selectIsAdmin);
+
+  const {items, totalPrice } = useSelector(state => state.cart)
+
+  const handleSearchValueChange = (e) => {
+    props.setSearchValue(e.target.value);
+  };
+
+  const onClickLogout = () => {
+    if (window.confirm("Вы действительно хотите выйти?")) {
+      dispatch(logout());
+      window.localStorage.removeItem("token");
+    }
+  };
+
+  if (!isAuth) {
+    <Navigate to="/" />;
+  }
+
   return (
     <div className={s.header__wrapper}>
       <div className={s.account__header__wrapper}>
@@ -17,21 +41,35 @@ function Header(props) {
             <img src={emailImg} alt="email" />
             <span>{props.email}</span>
           </div>
-
-          <Link to="/login" className={s.auth__info}>
-            <img src={lockImg} alt="lock" />
-            <span>Account</span>
-          </Link>
+          <div>
+            {isAdmin ? (
+              <Link to="/admin" className={s.admin__btn}>
+                Admin
+              </Link>
+            ) : (
+              ""
+            )}
+            {isAuth ? (
+              <button onClick={onClickLogout} className={s.logout__btn}>
+                Logout
+              </button>
+            ) : (
+              <Link to="/login" className={s.auth__info}>
+                <img src={lockImg} alt="lock" />
+                <span>Account</span>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
 
       <Link to="/" className={s.logo__wrapper}>
-          <div className={s.logo}></div>
-          <span>Lucky</span>
+        <div className={s.logo}></div>
+        <span>Lucky</span>
       </Link>
 
       <div className={s.search__wrapper}>
-        <div className={s.search__input__wrapper}>
+        <div className={s.search__input__wrapper} onChange={handleSearchValueChange}value={props.searchValue}>
           <input type="search" placeholder="Search Courses" />
         </div>
 
@@ -49,7 +87,10 @@ function Header(props) {
 
       <div className={s.menu__wrapper}>
         <div className={s.basket__wrapper}>
-          <img src={basketIcon} alt="basket" />
+          <Link to="/basket">
+            <img src={basketIcon} alt="basket" />
+          </Link>
+          <span className={s.items__count}>{items.length}</span>
         </div>
         <MenuBurger isWhite={false} />
       </div>
