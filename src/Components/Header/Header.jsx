@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Header.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import basketIcon from "../../images/Header/basket-icon.png";
 import logoImg from "../../images/Header/logo.png";
@@ -15,11 +15,17 @@ function Header(props) {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const isAdmin = useSelector(selectIsAdmin);
+  const navigate = useNavigate();
 
-  const {items, totalPrice } = useSelector(state => state.cart)
+  const { items, totalPrice } = useSelector((state) => state.cart);
 
   const handleSearchValueChange = (e) => {
+    navigate("/products");
     props.setSearchValue(e.target.value);
+
+    if (e.target.value === "") {
+      navigate("/");
+    }
   };
 
   const onClickLogout = () => {
@@ -29,12 +35,8 @@ function Header(props) {
     }
   };
 
-  if (!isAuth) {
-    <Navigate to="/" />;
-  }
-
   return (
-    <div className={s.header__wrapper}>
+    <div className={s.header__block}>
       <div className={s.account__header__wrapper}>
         <div className={s.account__header}>
           <div className={s.email__info}>
@@ -42,13 +44,6 @@ function Header(props) {
             <span>{props.email}</span>
           </div>
           <div>
-            {isAdmin ? (
-              <Link to="/admin" className={s.admin__btn}>
-                Admin
-              </Link>
-            ) : (
-              ""
-            )}
             {isAuth ? (
               <button onClick={onClickLogout} className={s.logout__btn}>
                 Logout
@@ -63,36 +58,42 @@ function Header(props) {
         </div>
       </div>
 
-      <Link to="/" className={s.logo__wrapper}>
-        <div className={s.logo}></div>
-        <span>Lucky</span>
-      </Link>
-
-      <div className={s.search__wrapper}>
-        <div className={s.search__input__wrapper} onChange={handleSearchValueChange}value={props.searchValue}>
-          <input type="search" placeholder="Search Courses" />
-        </div>
-
-        <div className={s.select__categories__wrapper}>
-          <select name="All categories" id="All categories">
-            <option value="1">All categories</option>
-            <option value="2">Programming</option>
-          </select>
-        </div>
-
-        <Link to="/search" className={s.submit__wrapper}>
-          <input type="submit" value=""></input>
+      <div className={s.header__wrapper}>
+        <Link to="/" className={s.logo__wrapper}>
+          <div className={s.logo}></div>
+          <span>Lucky</span>
         </Link>
-      </div>
 
-      <div className={s.menu__wrapper}>
-        <div className={s.basket__wrapper}>
-          <Link to="/basket">
-            <img src={basketIcon} alt="basket" />
+        <div className={s.search__wrapper}>
+          <div
+            className={s.search__input__wrapper}
+            onChange={handleSearchValueChange}
+            value={props.searchValue}
+          >
+            <input type="search" placeholder="Search Courses" />
+          </div>
+
+          <div className={s.select__categories__wrapper}>
+            <select name="All categories" id="All categories">
+              <option value="1">All categories</option>
+              <option value="2">Programming</option>
+            </select>
+          </div>
+
+          <Link to="/products" className={s.submit__wrapper}>
+            <input type="submit" value=""></input>
           </Link>
-          <span className={s.items__count}>{items.length}</span>
         </div>
-        <MenuBurger isWhite={false} />
+
+        <div className={s.menu__wrapper}>
+          <div className={s.basket__wrapper}>
+            <Link to="/basket">
+              <img src={basketIcon} alt="basket" />
+            </Link>
+            <span className={s.items__count}>{items.length}</span>
+          </div>
+          <MenuBurger isWhite={false} />
+        </div>
       </div>
     </div>
   );

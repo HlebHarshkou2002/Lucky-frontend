@@ -1,0 +1,153 @@
+.product__block {
+  display: flex;
+
+  .product__images {
+    margin-right: 40px;
+    .product__image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 224px;
+      height: 290px;
+
+      margin-bottom: 10px;
+      background-color: #f1f1f1;
+
+      border: 1px solid #111;
+      img {
+        width: 144px;
+      }
+    }
+
+    .option__images {
+      display: flex;
+      .option__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        height: 70px;
+        background-color: #f1f1f1;
+        margin-right: 5px;
+        img {
+          width: 38px;
+        }
+      }
+    }
+  }
+
+  .content__wrapper {
+    .product__title {
+      color: #212121;
+      letter-spacing: 1px;
+      text-transform: capitalize;
+      margin-bottom: 15px;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .stars__wrapper {
+      margin-bottom: 10px;
+      img {
+        width: 22px;
+        margin-right: 3px;
+      }
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: 600;
+      color: #111111;
+      margin-bottom: 30px;
+    }
+
+    .description {
+      height: 100px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 15px;
+      line-height: 25px;
+      font-weight: 400;
+      color: #777777;
+    }
+
+    .complexity {
+      span {
+        color: #212121;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      font-family: "Open Sans", sans-serif;
+      font-size: 15px;
+      line-height: 25px;
+      font-weight: 400;
+      color: #777777;
+      margin-bottom: 10px;
+    }
+
+    .categories {
+      span {
+        color: #212121;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      font-family: "Open Sans", sans-serif;
+      font-size: 15px;
+      line-height: 25px;
+      font-weight: 400;
+      color: #777777;
+      margin-bottom: 10px;
+    }
+
+    .ageRestriction {
+      span {
+        color: #212121;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      font-family: "Open Sans", sans-serif;
+      font-size: 15px;
+      line-height: 25px;
+      font-weight: 400;
+      color: #777777;
+      margin-bottom: 10px;
+    }
+
+    .author {
+      span {
+        color: #212121;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      font-family: "Open Sans", sans-serif;
+      font-size: 15px;
+      line-height: 25px;
+      font-weight: 400;
+      color: #777777;
+      margin-bottom: 10px;
+    }
+  }
+
+  .btns__wrapper {
+    display: flex;
+
+    .add__btn {
+        margin-top: 40px;
+      button {
+        width: 154px;
+        height: 52px;
+        background-color: #212121;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        transition: all 0.5s ease-out;
+        &:hover {
+            color: #111;
+            background-color: white;
+            cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ import EyeIcon from "../../../images/Products/eye-icon.png";
 import HeartIcon from "../../../images/Products/heart-icon.png";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../../redux/slices/cartSlice";
+import { Link } from "react-router-dom";
 
 function Product(props) {
   const dispatch = useDispatch();
@@ -18,14 +19,16 @@ function Product(props) {
       price: props.price,
       productImgUrl: props.productImgUrl,
     };
-    dispatch(addItem(item))
+    dispatch(addItem(item));
     console.log(item);
   };
 
   return (
     <div className={s.product__wrapper}>
       <div className={s.product__image__wrapper}>
-        <img src={props.productImgUrl} alt="" />
+        <Link to={`/products/${props.id}`}>
+          <img src={props.productImgUrl} alt="" />
+        </Link>
       </div>
       <div className={s.product__content__wrapper}>
         <div className={s.product__title}>

@@ -10,7 +10,7 @@ import GraphicImg from "../../images/Products/graphic-course.png";
 import MathImg from "../../images/Products/math-course.png";
 
 import axios from "../../redux/axios";
-import { fetchProducts } from "../../redux/slices/products.js";
+
 
 function Products(props) {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function Products(props) {
   const isProductsLoading = products.status === "loading";
 
   React.useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(props.fetchProductsFunction());
   }, []);
 
   return (
@@ -51,19 +51,6 @@ function Products(props) {
             />
           ))
         )}
-
-        {/* <Product title={"Laravel"} price={2.99} productImg={LaravelImg}/>
-        <Product title={"English(A1, A2)"} price={5.99} productImg={EnglishImg}/>
-        <Product title={"Business "} price={2.99} productImg={BusinessImg}/>
-        <Product title={"Graphic Design"} price={7.99} productImg={GraphicImg}/>
-        <Product title={"Mathematics"} price={2.99} productImg={MathImg}/>
-        <Product title={"Laravel"} price={4.99} productImg={LaravelImg}/>
-        <Product title={"English(A1, A2)"} price={5.99} productImg={EnglishImg}/>
-        <Product title={"Business "} price={2.99} productImg={BusinessImg}/>
-        <Product title={"Graphic Design"} price={2.99} productImg={GraphicImg}/>
-        <Product title={"Mathematics"} price={11.99} productImg={MathImg}/>
-        <Product title={"Laravel"} price={2.99} productImg={LaravelImg}/>
-        <Product title={"English(A1, A2)"} price={5.99} productImg={EnglishImg}/> */}
       </div>
     </div>
   );
