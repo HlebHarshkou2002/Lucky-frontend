@@ -1,0 +1,100 @@
+.product__block {
+  position: relative;
+  max-width: 250px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+  .product__img__block {
+    position: relative;
+    display: flex;
+    justify-content: center; /*центрируем элемент по горизонтали */
+    align-items: center;
+    &:before {
+      position: absolute;
+      content: "";
+      width: 250px;
+      height: 310px;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: black;
+      opacity: 0;
+      transition: all .15s linear;
+    }
+    &:hover:before {
+      opacity: 0.5;
+    }
+    .new__wrapper {
+      z-index: 100;
+      position: absolute;
+      top: -19px;
+      left: -19px;
+    }
+
+    .product__img__wrapper {
+      background-color: #f1f1f1;
+      width: 250px;
+      height: 310px;
+
+      display: flex;
+      justify-content: center; /*центрируем элемент по горизонтали */
+      align-items: center; /* и вертикали */
+
+      margin-bottom: 13px;
+
+      img {
+        max-width: 85%;
+        max-height: 85%;
+        box-shadow: 10px 10px 3px rgb(207, 207, 207);
+      }
+    }
+
+    &:hover .product__options {
+      opacity: 1;
+    }
+
+    .product__options {
+      opacity: 0;
+      position: absolute;
+      display: flex;
+      .product__option {
+        display: flex;
+        justify-content: center; /*центрируем элемент по горизонтали */
+        align-items: center; /* и вертикали */
+        width: 39px;
+        height: 39px;
+        margin-right: 4px;
+        // border: 1px solid white;
+        background-color: white;
+
+        &:hover {
+          cursor: pointer;
+          background-color: #f2f2f2;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .product__title {
+    display: flex;
+    justify-content: center; /*центрируем элемент по горизонтали */
+    align-items: center; /* и вертикали */
+
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 9px;
+  }
+
+  .product__price {
+    display: flex;
+    justify-content: center; /*центрируем элемент по горизонтали */
+    align-items: center; /* и вертикали */
+
+    font-size: 16px;
+    font-weight: 600;
+  }
+}

@@ -11,6 +11,11 @@ export const fetchMostPopularProducts = createAsyncThunk('products/fetchMostPopu
     return data;
 })
 
+export const fetchNewProducts = createAsyncThunk('products/fetchNewProducts', async () => {
+    const data = await axios.get('/products/most/new');
+    return data;
+})
+
 export const fetchRemoveProduct = createAsyncThunk('products/fetchRemoveProduct', async (id) => {
     await axios.delete(`/products/${id}`)
 })
@@ -21,6 +26,10 @@ const initialState = {
         status: 'loading'
     },
     mostPopular: {
+        items: [],
+        status: 'loading'
+    },
+    newProducts: {
         items: [],
         status: 'loading'
     },
@@ -60,6 +69,19 @@ const productsSlice = createSlice({
         [fetchMostPopularProducts.rejected]: (state, action) => {
             state.products.items = []
             state.products.status = 'error'
+        },
+
+        //Получение новых товаров
+        [fetchNewProducts.pending]: (state, action) => {
+            state.newProducts.status = 'loading'
+        },
+        [fetchNewProducts.fulfilled]: (state, action) => {
+            state.newProducts.items = action.payload
+            state.newProducts.status = 'loaded'
+        },
+        [fetchNewProducts.rejected]: (state, action) => {
+            state.newProducts.items = []
+            state.newProducts.status = 'error'
         },
 
         //Удаление товара
