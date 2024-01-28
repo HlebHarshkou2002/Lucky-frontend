@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import s from "./Header.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -16,6 +16,17 @@ function Header(props) {
   const isAuth = useSelector(selectIsAuth);
   const isAdmin = useSelector(selectIsAdmin);
   const navigate = useNavigate();
+  const [isFixed, setIsFixed] = useState(false);
+
+  const isFixedHeader = () => {
+    if (window.scrollY > 150) {
+      setIsFixed(true);
+    } else {
+      setIsFixed(false);
+    }
+  };
+
+  window.addEventListener("scroll", isFixedHeader);
 
   const { items, totalPrice } = useSelector((state) => state.cart);
 
@@ -59,42 +70,88 @@ function Header(props) {
       </div>
 
       <div className={s.header__wrapper}>
-        <Link to="/" className={s.logo__wrapper}>
-          <div className={s.logo}></div>
-          <span>Lucky</span>
-        </Link>
-
-        <div className={s.search__wrapper}>
-          <div
-            className={s.search__input__wrapper}
-            onChange={handleSearchValueChange}
-            value={props.searchValue}
-          >
-            <input type="search" placeholder="Search Courses" />
-          </div>
-
-          <div className={s.select__categories__wrapper}>
-            <select name="All categories" id="All categories">
-              <option value="1">All categories</option>
-              <option value="2">Programming</option>
-            </select>
-          </div>
-
-          <Link to="/products" className={s.submit__wrapper}>
-            <input type="submit" value=""></input>
+        <div className={s.header__inner__wrapper}>
+          <Link to="/" className={s.logo__wrapper}>
+            <div className={s.logo}></div>
+            <span>Lucky</span>
           </Link>
-        </div>
 
-        <div className={s.menu__wrapper}>
-          <div className={s.basket__wrapper}>
-            <Link to="/basket">
-              <img src={basketIcon} alt="basket" />
+          <div className={s.search__wrapper}>
+            <div
+              className={s.search__input__wrapper}
+              onChange={handleSearchValueChange}
+              value={props.searchValue}
+            >
+              <input type="search" placeholder="Search Courses" />
+            </div>
+
+            <div className={s.select__categories__wrapper}>
+              <select name="All categories" id="All categories">
+                <option value="1">All categories</option>
+                <option value="2">Programming</option>
+              </select>
+            </div>
+
+            <Link to="/products" className={s.submit__wrapper}>
+              <input type="submit" value=""></input>
             </Link>
-            <span className={s.items__count}>{items.length}</span>
           </div>
-          <MenuBurger isWhite={false} />
+
+          <div className={s.menu__wrapper}>
+            <div className={s.basket__wrapper}>
+              <Link to="/basket">
+                <img src={basketIcon} alt="basket" />
+              </Link>
+              <span className={s.items__count}>{items.length}</span>
+            </div>
+            <MenuBurger isWhite={false} />
+          </div>
         </div>
       </div>
+
+      {isFixed ?      
+      <div className={s.header__wrapper_fixed}>
+        <div className={s.header__inner__wrapper}>
+          <Link to="/" className={s.logo__wrapper}>
+            <div className={s.logo}></div>
+            <span>Lucky</span>
+          </Link>
+
+          <div className={s.search__wrapper}>
+            <div
+              className={s.search__input__wrapper}
+              onChange={handleSearchValueChange}
+              value={props.searchValue}
+            >
+              <input type="search" placeholder="Search Courses" />
+            </div>
+
+            <div className={s.select__categories__wrapper}>
+              <select name="All categories" id="All categories">
+                <option value="1">All categories</option>
+                <option value="2">Programming</option>
+              </select>
+            </div>
+
+            <Link to="/products" className={s.submit__wrapper}>
+              <input type="submit" value=""></input>
+            </Link>
+          </div>
+
+          <div className={s.menu__wrapper}>
+            <div className={s.basket__wrapper}>
+              <Link to="/basket">
+                <img src={basketIcon} alt="basket" />
+              </Link>
+              <span className={s.items__count}>{items.length}</span>
+            </div>
+            <MenuBurger isWhite={false} />
+          </div>
+        </div>
+      </div> 
+      : 
+      ""}
+
     </div>
   );
 }

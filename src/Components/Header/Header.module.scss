@@ -1,8 +1,5 @@
 .header__block {
-  position: sticky;
-  top: 0;
-
-  z-index: 10000;
+  z-index: 1000;
   background-color: white;
 
   margin-bottom: 50px;
@@ -10,11 +7,11 @@
   width: 100%;
 
   .account__header__wrapper {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     height: 30px;
-    width: 100vw;
+    width: 100%;
     z-index: 1;
     background-color: #f1f1f1;
 
@@ -63,10 +60,33 @@
   }
 
   .header__wrapper {
+    position: static;
+    background-color: white;
     margin-top: 50px;
+  }
+
+  .header__wrapper_fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    padding: 20px 0;
+
+    background-color: white;
+    border-bottom: 2px solid #111;
+
+    z-index: 1000;
+  }
+
+  .header__inner__wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+
   }
 
   .logo__wrapper {
