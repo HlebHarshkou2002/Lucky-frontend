@@ -1,0 +1,50 @@
+.sidebar__block {
+  z-index: 10000;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 280px;
+  background-color: #111;
+  height: 100vh;
+  color: white;
+
+  animation-duration: 0.5s;
+  animation-name: slidein;
+
+  .sidebar__block__wrapper {
+    font-family: Raleway;
+    margin: 0 auto;
+    padding: 35px;
+    width: 258px;
+
+    .menu__item {
+      margin-bottom: 20px;
+      .menu__link {
+        color: white;
+        text-decoration: none;
+        background-color: #111;
+        font-size: 18px;
+        border: none;
+        &:hover {
+            cursor: pointer;
+        }
+
+        img{
+            padding-left: 3px;
+            margin-bottom: -1px;
+            width: 14px;
+            height: 14px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slidein {
+  from {
+    right: -280px;
+  }
+  to {
+    right: 0;
+  }
+}

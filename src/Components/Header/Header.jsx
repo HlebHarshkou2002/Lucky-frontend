@@ -10,14 +10,29 @@ import MenuBurger from "../MenuBurger/MenuBurger";
 import emailImg from "../../images/Header/email-icon.png";
 import lockImg from "../../images/Header/lock-icon.png";
 import { logout, selectIsAdmin, selectIsAuth } from "../../redux/slices/auth";
+import MenuSidebar from "../MenuSidebar/MenuSidebar";
+import HeartImg from './../../images/Header/heart.png'
 
 function Header(props) {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const isAdmin = useSelector(selectIsAdmin);
   const navigate = useNavigate();
-  const [isFixed, setIsFixed] = useState(false);
+  const { items, totalPrice } = useSelector((state) => state.cart);
 
+  const [isFixedHeaderFlag, setIsFixed] = useState(false);
+  const [isVisibleSideMenu, setVisibilitySideMenu] = useState(false);
+
+  const switchVisibilityMenu = () => {
+    console.log(isVisibleSideMenu);
+    if (isVisibleSideMenu === true) {
+      setVisibilitySideMenu(false);
+    } else {
+      setVisibilitySideMenu(true);
+    }
+  };
+
+  // Header fixed
   const isFixedHeader = () => {
     if (window.scrollY > 150) {
       setIsFixed(true);
@@ -25,10 +40,7 @@ function Header(props) {
       setIsFixed(false);
     }
   };
-
   window.addEventListener("scroll", isFixedHeader);
-
-  const { items, totalPrice } = useSelector((state) => state.cart);
 
   const handleSearchValueChange = (e) => {
     navigate("/products");
@@ -36,13 +48,6 @@ function Header(props) {
 
     if (e.target.value === "") {
       navigate("/");
-    }
-  };
-
-  const onClickLogout = () => {
-    if (window.confirm("Вы действительно хотите выйти?")) {
-      dispatch(logout());
-      window.localStorage.removeItem("token");
     }
   };
 
@@ -56,9 +61,7 @@ function Header(props) {
           </div>
           <div>
             {isAuth ? (
-              <button onClick={onClickLogout} className={s.logout__btn}>
-                Logout
-              </button>
+              <div className={s.auth__info__details}> <img src={HeartImg} alt="" /> Wishlist | <span>$</span> USD</div>
             ) : (
               <Link to="/login" className={s.auth__info}>
                 <img src={lockImg} alt="lock" />
@@ -104,54 +107,69 @@ function Header(props) {
               </Link>
               <span className={s.items__count}>{items.length}</span>
             </div>
-            <MenuBurger isWhite={false} />
+
+            {isVisibleSideMenu ? (
+              <div className={s.hide__menu} onClick={switchVisibilityMenu}>
+                X
+              </div>
+            ) : (
+              <MenuBurger isWhite={false} onClick={switchVisibilityMenu} />
+            )}
           </div>
         </div>
       </div>
 
-      {isFixed ?      
-      <div className={s.header__wrapper_fixed}>
-        <div className={s.header__inner__wrapper}>
-          <Link to="/" className={s.logo__wrapper}>
-            <div className={s.logo}></div>
-            <span>Lucky</span>
-          </Link>
-
-          <div className={s.search__wrapper}>
-            <div
-              className={s.search__input__wrapper}
-              onChange={handleSearchValueChange}
-              value={props.searchValue}
-            >
-              <input type="search" placeholder="Search Courses" />
-            </div>
-
-            <div className={s.select__categories__wrapper}>
-              <select name="All categories" id="All categories">
-                <option value="1">All categories</option>
-                <option value="2">Programming</option>
-              </select>
-            </div>
-
-            <Link to="/products" className={s.submit__wrapper}>
-              <input type="submit" value=""></input>
+      {isFixedHeaderFlag ? (
+        <div className={s.header__wrapper_fixed}>
+          <div className={s.header__inner__wrapper}>
+            <Link to="/" className={s.logo__wrapper}>
+              <div className={s.logo}></div>
+              <span>Lucky</span>
             </Link>
-          </div>
 
-          <div className={s.menu__wrapper}>
-            <div className={s.basket__wrapper}>
-              <Link to="/basket">
-                <img src={basketIcon} alt="basket" />
+            <div className={s.search__wrapper}>
+              <div
+                className={s.search__input__wrapper}
+                onChange={handleSearchValueChange}
+                value={props.searchValue}
+              >
+                <input type="search" placeholder="Search Courses" />
+              </div>
+
+              <div className={s.select__categories__wrapper}>
+                <select name="All categories" id="All categories">
+                  <option value="1">All categories</option>
+                  <option value="2">Programming</option>
+                </select>
+              </div>
+
+              <Link to="/products" className={s.submit__wrapper}>
+                <input type="submit" value=""></input>
               </Link>
-              <span className={s.items__count}>{items.length}</span>
             </div>
-            <MenuBurger isWhite={false} />
+
+            <div className={s.menu__wrapper}>
+              <div className={s.basket__wrapper}>
+                <Link to="/basket">
+                  <img src={basketIcon} alt="basket" />
+                </Link>
+                <span className={s.items__count}>{items.length}</span>
+              </div>
+              {isVisibleSideMenu ? (
+              <div className={s.hide__menu} onClick={switchVisibilityMenu}>
+                X
+              </div>
+            ) : (
+              <MenuBurger isWhite={false} onClick={switchVisibilityMenu} />
+            )}
+            </div>
           </div>
         </div>
-      </div> 
-      : 
-      ""}
+      ) : (
+        ""
+      )}
 
+      {isVisibleSideMenu ? <MenuSidebar /> : ""}
     </div>
   );
 }

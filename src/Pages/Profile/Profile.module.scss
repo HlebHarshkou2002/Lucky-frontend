@@ -1,0 +1,30 @@
+.profile__block {
+    display: flex;
+    .profile__image__wrapper {
+        margin-right: 70px;
+        img{
+            width: 300px;
+            background-color: black;
+            border-radius: 50%;
+        }
+    }
+
+    .profile__content__wrapper{
+        padding: 30px;
+        .profile__name {
+            margin-bottom: 40px;
+            font-size: 38px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        span {
+            font-weight: 600;
+            margin-right: 20px;
+        }
+
+        div {
+            margin-bottom: 10px;
+        }
+    }
+}
