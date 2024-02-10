@@ -14,7 +14,7 @@ import axios from "../../redux/axios";
 
 function Products(props) {
   const dispatch = useDispatch();
-  const { products, genres } = useSelector((state) => state.products);
+  const products = useSelector((state) => (props.slice === "mostPopular" ? state.products.mostPopular : state.products.products));
 
   const isProductsLoading = products.status === "loading";
 

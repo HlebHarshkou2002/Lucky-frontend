@@ -9,7 +9,7 @@ function Home (props) {
     return (
         <>
             <Intro />
-            <Products title={"Most popular"} fetchProductsFunction={fetchMostPopularProducts} searchValue={props.searchValue}/>
+            <Products title={"Most popular"} fetchProductsFunction={fetchMostPopularProducts} slice={"mostPopular"} searchValue={props.searchValue}/>
             <Discount />
             <NewProducts />
         </>

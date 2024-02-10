@@ -46,9 +46,7 @@ function Header(props) {
     navigate("/products");
     props.setSearchValue(e.target.value);
 
-    if (e.target.value === "") {
-      navigate("/");
-    }
+
   };
 
   return (

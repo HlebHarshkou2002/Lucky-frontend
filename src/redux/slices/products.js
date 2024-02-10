@@ -60,15 +60,15 @@ const productsSlice = createSlice({
 
         //Получение популярных товаров
         [fetchMostPopularProducts.pending]: (state, action) => {
-            state.products.status = 'loading'
+            state.mostPopular.status = 'loading'
         },
         [fetchMostPopularProducts.fulfilled]: (state, action) => {
-            state.products.items = action.payload
-            state.products.status = 'loaded'
+            state.mostPopular.items = action.payload
+            state.mostPopular.status = 'loaded'
         },
         [fetchMostPopularProducts.rejected]: (state, action) => {
-            state.products.items = []
-            state.products.status = 'error'
+            state.mostPopular.items = []
+            state.mostPopular.status = 'error'
         },
 
         //Получение новых товаров
