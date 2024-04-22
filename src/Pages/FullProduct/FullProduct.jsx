@@ -33,14 +33,7 @@ function FullProduct() {
   }
 
   const onClickAddProduct = () => {
-    const item = {
-      id: data.id,
-      title: data.title,
-      price: data.price,
-      productImgUrl: data.imgUrl,
-    };
-    dispatch(addItem(item));
-    console.log(item);
+    dispatch(addItem(data));
   };
 
   const getStars = () => {
@@ -89,7 +82,7 @@ function FullProduct() {
         </div>
 
         <div className={s.categories}>
-            <span>CATEGORIES: </span>{data.genres.join(", ")}
+            <span>CATEGORIES: </span>{data.categories.join(", ")}
         </div>
 
         <div className={s.ageRestriction}>

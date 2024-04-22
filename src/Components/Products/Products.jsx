@@ -44,6 +44,7 @@ function Products(props) {
             }
           }).map((product) => (
             <Product
+              product={product}
               id={product._id}
               title={product.title}
               price={product.price}

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "../../redux/axios";
 import { Navigate, useNavigate } from "react-router-dom";
 
-import {clearItems} from "../../redux/slices/cartSlice"
+import { clearItems } from "../../redux/slices/cartSlice";
 
 function Cart() {
   const { items, totalPrice } = useSelector((state) => state.cart);
@@ -14,12 +14,11 @@ function Cart() {
 
   const onCreateSale = () => {
     try {
-      const { data } = axios.post("/sales", items);
-      console.log("RES ПОЧЕМУ не определён???", data);
-        dispatch(clearItems())
+      const { data } = axios.post("/products/sale", items);
+      dispatch(clearItems());
       alert("Оплата прошла успешно!");
-        navigate('/')
-
+      navigate("/");
+      console.log(data);
     } catch (err) {
       alert("Ошибка при оплате товара");
     }
@@ -32,7 +31,7 @@ function Cart() {
           id={obj.id}
           title={obj.title}
           price={obj.price}
-          productImgUrl={obj.productImgUrl}
+          productImgUrl={obj.imgUrl}
         />
       ))}
       <div className={s.total__price__wrapper}>

@@ -19,7 +19,7 @@ function Product(props) {
       price: props.price,
       productImgUrl: props.productImgUrl,
     };
-    dispatch(addItem(item));
+    dispatch(addItem(props.product));
     console.log(item);
   };
 
