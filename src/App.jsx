@@ -11,32 +11,39 @@ import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
 import Cart from "./Pages/Cart/Cart";
 import FullProduct from "./Pages/FullProduct/FullProduct";
 import Profile from "./Pages/Profile/Profile";
-
+import About from "./Pages/About/About";
 function App() {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth);
-  const [searchValue, setSearchValue] = React.useState('')
+  const [searchValue, setSearchValue] = React.useState("");
 
-  console.log(searchValue)
+  console.log(searchValue);
 
   React.useEffect(() => {
     dispatch(fetchAuthMe());
   }, []);
 
-
   return (
     <BrowserRouter>
       <div className="App">
         <div className="container">
-          <Header email={userData.data?.email} searchValue={searchValue} setSearchValue={setSearchValue}/>
+          <Header
+            email={userData.data?.email}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+          />
           <Routes>
-            <Route path="/" element={<Home searchValue={searchValue}/>} />
-            <Route path="/products" element={<SearchProducts searchValue={searchValue}/>} />
+            <Route path="/" element={<Home searchValue={searchValue} />} />
+            <Route
+              path="/products"
+              element={<SearchProducts searchValue={searchValue} />}
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
-            <Route path="/basket" element={<Cart />} /> 
-            <Route path="/products/:id" element={<FullProduct />} /> 
-            <Route path="/profile" element={<Profile />} /> 
+            <Route path="/basket" element={<Cart />} />
+            <Route path="/products/:id" element={<FullProduct />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </div>
       </div>
