@@ -26,6 +26,7 @@
   .intro__banner {
     width: 100%;
     height: 438px;
+    max-width: 919px;
     position: relative;
     padding-top: 1px;
     background-color: #F1F1F1;
@@ -78,4 +79,16 @@
         bottom: 0;
     }
   }
+}
+
+
+
+.navigation__slider {
+ 
+  width: 915px;
+ 
+}
+
+.swiper-button-prev {
+  
 }
