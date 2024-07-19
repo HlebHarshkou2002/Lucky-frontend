@@ -1,0 +1,40 @@
+.swiper-button-prev {
+    height: 30px;
+    width: 30px;
+    background-color: black;
+    padding: 10px;
+    transform: translate(-65px);
+    transition: .2s;
+    
+    &::after {
+        font-size: 23px;
+        font-weight: 700;
+        color: #fff;
+    }
+}
+
+.swiper-button-next {
+    height: 30px;
+    width: 30px;
+    background-color: black;
+    padding: 10px;
+    transform: translate(65px);
+    transition: .3s;
+
+    &::after {
+        font-size: 23px;
+        font-weight: 700;
+        color: #fff;
+    }
+}
+
+.slider__block {
+    &:hover {
+        .swiper-button-next {
+            transform: translate(0);
+        }
+        .swiper-button-prev {
+            transform: translate(0);
+        }
+    }
+}

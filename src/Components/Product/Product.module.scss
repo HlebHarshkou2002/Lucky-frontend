@@ -1,0 +1,11 @@
+.product__wrapper {
+  td {
+    img {
+      width: 80px;
+    }
+    padding: 10px;
+  }
+  &:hover {
+    background-color: #fafafa;
+  }
+}

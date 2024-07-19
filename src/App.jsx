@@ -12,6 +12,9 @@ import Cart from "./Pages/Cart/Cart";
 import FullProduct from "./Pages/FullProduct/FullProduct";
 import Profile from "./Pages/Profile/Profile";
 import About from "./Pages/About/About";
+import MyOrders from "./Pages/MyOrders/MyOrders";
+import FullOrder from "./Pages/FullOrder/FullOrder";
+
 function App() {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth);
@@ -40,10 +43,17 @@ function App() {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
+
             <Route path="/basket" element={<Cart />} />
             <Route path="/products/:id" element={<FullProduct />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/about" element={<About />} />
+
+            <Route path="/basket" element={<Cart />} /> 
+            <Route path="/products/:id" element={<FullProduct />} /> 
+            <Route path="/profile" element={<Profile />} /> 
+            <Route path="/orders/user/:id" element={<MyOrders />} /> 
+            <Route path="/orders/:id" element={<FullOrder />} /> 
           </Routes>
         </div>
       </div>

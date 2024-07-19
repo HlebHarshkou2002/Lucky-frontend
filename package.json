@@ -19,6 +19,7 @@
     "react-scripts": "5.0.1",
     "recharts": "^2.10.3",
     "sass": "^1.69.5",
+    "swiper": "^11.1.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

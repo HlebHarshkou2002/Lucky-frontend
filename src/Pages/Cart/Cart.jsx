@@ -9,14 +9,18 @@ import { clearItems } from "../../redux/slices/cartSlice";
 
 function Cart() {
   const { items, totalPrice } = useSelector((state) => state.cart);
+  const userId = useSelector((state) => state.auth.data._id)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onCreateSale = () => {
     try {
-      const { data } = axios.post("/products/sale", items);
+      const { data } = axios.post("/orders", {
+        userId: userId,
+        products: items
+      });
       dispatch(clearItems());
-      alert("Оплата прошла успешно!");
+      alert("Заказ принят!");
       navigate("/");
       console.log(data);
     } catch (err) {
@@ -39,7 +43,7 @@ function Cart() {
       </div>
       <div className={s.cart__button__wrapper}>
         <button className={s.cart__button} onClick={onCreateSale}>
-          Оплатить
+          Заказать
         </button>
       </div>
     </div>
