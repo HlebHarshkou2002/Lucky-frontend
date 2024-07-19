@@ -11,6 +11,8 @@ import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
 import Cart from "./Pages/Cart/Cart";
 import FullProduct from "./Pages/FullProduct/FullProduct";
 import Profile from "./Pages/Profile/Profile";
+import MyOrders from "./Pages/MyOrders/MyOrders";
+import FullOrder from "./Pages/FullOrder/FullOrder";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +39,8 @@ function App() {
             <Route path="/basket" element={<Cart />} /> 
             <Route path="/products/:id" element={<FullProduct />} /> 
             <Route path="/profile" element={<Profile />} /> 
+            <Route path="/orders/user/:id" element={<MyOrders />} /> 
+            <Route path="/orders/:id" element={<FullOrder />} /> 
           </Routes>
         </div>
       </div>
