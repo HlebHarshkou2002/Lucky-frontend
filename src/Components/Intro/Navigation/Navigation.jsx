@@ -7,13 +7,14 @@ import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import './sliderStyle.scss';
+import { Link } from "react-router-dom";
 
 function Navigation() {
   return (
     <div className={s.navigation__block}>
       <nav className={s.nav__wrapper}>
         <span>Home</span>
-        <span>About</span>
+        <span><Link to="/about" className={s.menu__link}>About</Link></span>
         <span>Courses</span>
         <span>Contact</span>
       </nav>

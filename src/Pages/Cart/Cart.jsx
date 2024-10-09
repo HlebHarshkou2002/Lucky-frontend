@@ -10,23 +10,70 @@ import { clearItems } from "../../redux/slices/cartSlice";
 function Cart() {
   const { items, totalPrice } = useSelector((state) => state.cart);
   const userId = useSelector((state) => state.auth.data._id)
+  const fullName = useSelector((state) => state.auth.data.fullName)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const wsConnection = new WebSocket('ws://localhost:8080')
+
   const onCreateSale = () => {
     try {
-      const { data } = axios.post("/orders", {
+      const data = axios.post("/orders", {
         userId: userId,
         products: items
+      }).then((res) => {
+        console.log("ДАННЫЕ ПРИ СОЗДАНИИ ЗАКАЗА: ", res.data)
+        const data = res.data;
+        //socket data
+        const sendMessage = {
+          message: "123",
+          userId: userId,
+          _id: data._id,
+          orderStatus: data.orderStatus,
+          user: {
+            fullName: fullName
+          },
+          createdAt: data.createdAt,
+          products: items,
+          event: "message"
+        }
+        wsConnection.send(JSON.stringify(sendMessage))
+
+        dispatch(clearItems());
+        alert("Заказ принят!");
+        navigate("/");
       });
-      dispatch(clearItems());
-      alert("Заказ принят!");
-      navigate("/");
-      console.log(data);
+
+
     } catch (err) {
       alert("Ошибка при оплате товара");
     }
   };
+
+  //WebSocket
+
+  React.useEffect(() => {
+
+
+    wsConnection.onopen = () => {
+      console.log("Socket подключился")
+      const message = {
+        event: "connection"
+      }
+      wsConnection.send(JSON.stringify(message))
+    }
+    wsConnection.onmessage = () => {
+
+    }
+    wsConnection.onclose = () => {
+      console.log("Socket закрыт")
+    }
+    wsConnection.onerror = () => {
+      console.log("Socket ошибка")
+    }
+
+
+  }, [])
 
   return (
     <div className={s.cart__wrapper}>
