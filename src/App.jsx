@@ -14,6 +14,7 @@ import Profile from "./Pages/Profile/Profile";
 import About from "./Pages/About/About";
 import MyOrders from "./Pages/MyOrders/MyOrders";
 import FullOrder from "./Pages/FullOrder/FullOrder";
+import CheckOut from "./Pages/CheckOut/CheckOut";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ function App() {
             <Route path="/registration" element={<Registration />} />
 
             <Route path="/basket" element={<Cart />} />
+            <Route path="/check-out" element={<CheckOut />} />
             <Route path="/products/:id" element={<FullProduct />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/about" element={<About />} />

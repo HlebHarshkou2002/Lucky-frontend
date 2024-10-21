@@ -1,0 +1,25 @@
+.item__wrapper {
+    display: flex;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #B6B6B6;
+
+    .img__wrapper {
+        width: 30px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    div {
+        margin-right: 10px;
+        display: grid;
+        align-items: end;
+    }
+
+    .price__wrapper {
+        position: relative;
+        left: 80%;
+    }
+}
